@@ -18,7 +18,7 @@ namespace Author.Signup
         {
             await SendAsync(new Response()
             {
-
+                Message = $"Welcome {req.FirstName} {req.LastName}"
             });
         }
     }
