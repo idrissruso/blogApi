@@ -11,7 +11,7 @@ namespace blogApi.data
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseNpgsql("Host=localhost;Port=5432;Database=finshark_db;Username=postgres;Password=idris2014");
+            optionsBuilder.UseNpgsql("Host=localhost;Port=5432;Database=blog_db;Username=postgres;Password=idris2014");
         }
         public override int SaveChanges()
         {

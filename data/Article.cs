@@ -9,7 +9,6 @@ namespace blogApi.data
 {
     public class Article
     {
-
         public int Id { get; set; }
 
         public string Title { get; set; } = string.Empty;
