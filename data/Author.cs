@@ -8,7 +8,7 @@ namespace blogApi.data
 {
     public class Author
     {
-        public int AuthorId { get; set; }
+        public int Id { get; set; }
 
         public string Username { get; set; } = string.Empty;
 
