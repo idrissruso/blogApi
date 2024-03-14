@@ -9,17 +9,9 @@ namespace blogApi.data
     public class AppDbContext : DbContext
     {
 
-        public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-        }
-
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
-        {
-            modelBuilder.Entity<Admin>().HasKey(a => a.Id);
-            modelBuilder.Entity<Article>().HasKey(a => a.Id);
-            modelBuilder.Entity<Author>().HasKey(a => a.Id);
-
-            base.OnModelCreating(modelBuilder);
+            optionsBuilder.UseNpgsql("Host=localhost;Port=5432;Database=finshark_db;Username=postgres;Password=idris2014");
         }
         public DbSet<Admin> Admins { set; get; }
         public DbSet<Article> Articles { set; get; }
