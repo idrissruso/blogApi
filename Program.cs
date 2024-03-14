@@ -1,11 +1,12 @@
-global using FastEndpoints;
+using FastEndpoints;
 using FastEndpoints.Swagger;
 
 var builder = WebApplication.CreateBuilder();
-builder.Services.AddFastEndpoints();
-builder.Services.SwaggerDocument();
+builder.Services
+   .AddFastEndpoints()
+   .SwaggerDocument();
 
 var app = builder.Build();
-app.UseFastEndpoints();
-app.UseSwaggerGen();
+app.UseFastEndpoints()
+   .UseSwaggerGen();
 app.Run();
