@@ -1,15 +1,12 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using Admin.Login;
 using blogApi.data;
+using Config;
 using FastEndpoints;
-using AutoMapper;
-using Microsoft.AspNetCore.Mvc;
+
 
 namespace Author.Signup
 {
-    public class NewAuthor(AppDbContext? dbContext, AutoMapper.IMapper mapper) : Endpoint<NewAuthorRequest, Response>
+    public class NewAuthor(AppDbContext? dbContext, AutoMapper.IMapper mapper) : Endpoint<NewAuthorRequest, Response<NewAuthResponse>>
     {
         protected readonly AppDbContext? _dbContext = dbContext;
         protected readonly AutoMapper.IMapper _mapper = mapper;
@@ -30,24 +27,18 @@ namespace Author.Signup
                 _dbContext?.Add(newAuthor);
                 _dbContext?.SaveChanges();
 
-                await SendAsync(new Response()
-                {
-                    StatsCode = 201,
-                    Status = "Success",
-                    Message = "Author created successfully"
-                });
-
+                await SendAsync(new(
+                        message: "Author created successfully",
+                        statusCode: 201
+                ), cancellation: ct);
             }
             catch (System.Exception ex)
             {
                 // return a bad request 
-                await SendAsync(new Response()
-                {
-                    StatsCode = 400,
-                    Status = "Failed",
-                    Message = ex.Message
-                });
-
+                await SendAsync(new(
+                    message: ex.Message,
+                    statusCode: 400), cancellation: ct
+                );
             }
 
         }

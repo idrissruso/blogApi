@@ -16,7 +16,7 @@ namespace Author.Signup
         public string PasswordHash { get; set; } = string.Empty;
     }
 
-    public class Response
+    public class NewAuthResponse
     {
         public int StatsCode { get; set; } = 200;
 

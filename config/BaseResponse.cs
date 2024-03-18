@@ -51,6 +51,13 @@ namespace Config
         public Response()
         {
         }
+
+        public Response(string message, bool success, int statusCode)
+        {
+            Message = message;
+            Success = success;
+            StatusCode = statusCode;
+        }
     }
 
 
