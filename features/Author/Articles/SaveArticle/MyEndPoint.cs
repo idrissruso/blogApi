@@ -6,10 +6,11 @@ using System.Threading.Tasks;
 using blogApi.data;
 using FastEndpoints;
 using AutoMapper;
+using Config;
 
 namespace blogApi.features.Author.Articles.SaveArticle
 {
-    public class MyEndPoint : Endpoint<NewArticleRequest, NewArticleResponse>
+    public class MyEndPoint : Endpoint<NewArticleRequest, Response<NewArticleResponse>>
     {
         private readonly AppDbContext _dbContext;
         private readonly AutoMapper.IMapper _mapper;
@@ -33,22 +34,18 @@ namespace blogApi.features.Author.Articles.SaveArticle
                 _dbContext.Add(newArticle);
                 _dbContext.SaveChanges();
 
-                await SendAsync(new NewArticleResponse
-                {
-                    StatsCode = 201,
-                    Status = "Success",
-                    Message = "Article created successfully"
-                });
+                await SendAsync(new(
+                    message: "Article created successfully",
+                    statusCode: 201
+                ), cancellation: token);
 
             }
             catch (System.Exception ex)
             {
-                await SendAsync(new NewArticleResponse
-                {
-                    StatsCode = 400,
-                    Status = "Failed",
-                    Message = ex.Message
-                });
+                await SendAsync(new(
+                    message: ex.Message,
+                    statusCode: 400
+                ), cancellation: token);
             }
 
 
