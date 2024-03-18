@@ -19,7 +19,7 @@ namespace blogApi.data
         public int AuthorId { get; set; }
 
         public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
-        public Author Author { get; set; } = new Author();
+        public AuthorEntity Author { get; set; } = new AuthorEntity();
 
     }
 }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace blogApi.data
 {
-    public class Author
+    public class AuthorEntity
     {
         public int Id { get; set; }
 
