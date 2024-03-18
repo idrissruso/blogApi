@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Author.Signup;
 using AutoMapper;
 using blogApi.data;
+using blogApi.features.Author.Articles.SaveArticle;
 
 namespace blogApi.config
 {
@@ -13,6 +14,7 @@ namespace blogApi.config
         public MapperConfig()
         {
             CreateMap<NewAuthorRequest, AuthorEntity>().ReverseMap();
+            CreateMap<NewArticleRequest, ArticleEntity>().ReverseMap();
         }
 
     }

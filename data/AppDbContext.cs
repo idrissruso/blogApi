@@ -15,7 +15,7 @@ namespace blogApi.data
         }
 
         public DbSet<Admin> Admins { set; get; }
-        public DbSet<Article> Articles { set; get; }
+        public DbSet<ArticleEntity> Articles { set; get; }
         public DbSet<AuthorEntity> Authors { set; get; }
 
 

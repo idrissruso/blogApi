@@ -18,6 +18,6 @@ namespace blogApi.data
         public string Email { get; set; } = string.Empty;
 
         // Navigation property to represent one-to-many relationship
-        public ICollection<Article> Articles { get; set; } = [];
+        public ICollection<ArticleEntity> Articles { get; set; } = [];
     }
 }

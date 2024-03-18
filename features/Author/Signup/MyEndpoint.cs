@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using blogApi.data;
 using FastEndpoints;
 using AutoMapper;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Author.Signup
 {

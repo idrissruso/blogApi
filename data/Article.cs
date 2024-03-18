@@ -7,19 +7,13 @@ using System.Threading.Tasks;
 
 namespace blogApi.data
 {
-    public class Article
+    public class ArticleEntity
     {
         public int Id { get; set; }
-
         public string Title { get; set; } = string.Empty;
-
-
         public string Content { get; set; } = string.Empty;
-
         public int AuthorId { get; set; }
-
         public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
-        public AuthorEntity Author { get; set; } = new AuthorEntity();
-
+        public required AuthorEntity Author { get; set; }
     }
 }

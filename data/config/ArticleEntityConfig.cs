@@ -7,9 +7,9 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace blogApi.data.config
 {
-    public class ArticleEntityConfig : IEntityTypeConfiguration<Article>
+    public class ArticleEntityConfig : IEntityTypeConfiguration<ArticleEntity>
     {
-        public void Configure(EntityTypeBuilder<Article> builder)
+        public void Configure(EntityTypeBuilder<ArticleEntity> builder)
         {
             builder.ToTable("Articles");
             builder.HasKey(x => x.Id);
