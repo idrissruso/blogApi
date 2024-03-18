@@ -10,12 +10,13 @@ namespace Author.Signup
 {
     public class NewAuthor(AppDbContext? dbContext, AutoMapper.IMapper mapper) : Endpoint<NewAuthorRequest, Response>
     {
-        protected readonly AppDbContext _dbContext = dbContext;
+        protected readonly AppDbContext? _dbContext = dbContext;
         protected readonly AutoMapper.IMapper _mapper = mapper;
 
         public override void Configure()
         {
             Post("/author/signup");
+
             AllowAnonymous();
         }
 
@@ -25,21 +26,25 @@ namespace Author.Signup
             try
             {
                 var newAuthor = _mapper.Map<AuthorEntity>(req);
-                _dbContext.Add(newAuthor);
-                _dbContext.SaveChanges();
+                _dbContext?.Add(newAuthor);
+                _dbContext?.SaveChanges();
 
                 await SendAsync(new Response()
                 {
-                    Message = $"Welcome {req.FirstName} {req.LastName}"
+                    StatsCode = 201,
+                    Status = "Success",
+                    Message = "Author created successfully"
                 });
 
             }
-            catch (System.Exception)
+            catch (System.Exception ex)
             {
                 // return a bad request 
                 await SendAsync(new Response()
                 {
-                    Message = "An error accured"
+                    StatsCode = 400,
+                    Status = "Failed",
+                    Message = ex.Message
                 });
 
             }
