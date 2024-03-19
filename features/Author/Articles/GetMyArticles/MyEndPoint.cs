@@ -1,4 +1,5 @@
 
+using System.Net;
 using blogApi.data;
 using Config;
 using FastEndpoints;
@@ -27,7 +28,23 @@ namespace blogApi.features.Author.Articles.GetMyArticles
         {
             try
             {
-                throw new Exception("kjkjhjkn");
+                var articles = _dbContext.Articles.Where(x => x.Id == request.AuthorId).ToList();
+                List<ArticleByAuthorResponse> mappedArticles = articles.Select(x => _mapper.Map<ArticleByAuthorResponse>(x)).ToList();
+
+                if (mappedArticles.Count == 0)
+                {
+                    await SendAsync(new(
+                        message: "No articles found for this author.",
+                        statusCode: (int)HttpStatusCode.NotFound
+                    ), cancellation: token);
+                    return;
+                }
+
+
+                await SendAsync(new(
+                    data: mappedArticles,
+                    statusCode: (int)HttpStatusCode.OK
+                ), cancellation: token);
             }
             catch (System.Exception ex)
             {
