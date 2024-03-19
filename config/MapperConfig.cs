@@ -7,6 +7,7 @@ using AutoMapper;
 using blogApi.data;
 using blogApi.features.Author.Articles.GetArticle;
 using blogApi.features.Author.Articles.SaveArticle;
+using blogApi.features.Public.GetArticleList;
 
 namespace blogApi.config
 {
@@ -18,6 +19,7 @@ namespace blogApi.config
             CreateMap<NewArticleRequest, ArticleEntity>().ReverseMap();
             CreateMap<ArticleEntity, NewArticleResponse>().ReverseMap();
             CreateMap<ArticleEntity, GetArticleByIdResponse>().ReverseMap();
+            CreateMap<ArticleEntity, GetAllArticlesResponse>().ReverseMap();
         }
 
     }

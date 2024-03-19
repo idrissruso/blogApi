@@ -52,7 +52,7 @@ namespace blogApi.features.Author.Articles.deleteArticle
             catch (System.Exception ex)
             {
 
-                await SendAsync(new(ex.Message, 500));
+                await SendAsync(new(ex.Message, 500), cancellation: token);
             }
         }
     }
